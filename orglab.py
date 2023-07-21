@@ -25,34 +25,38 @@ def infos():
 
 #layout janela
 window = tk.Tk()
-frame = tk.Frame(master=window, width=1150, height=600, bg= 'white')
+window.title("ORGLAB - ORGANIZAÇÃO DE LABORATÓRIOS")
+window.minsize(1150,600)
+window.maxsize(1150,600)
+frame = tk.Frame(master=window, width=1150, height=600)
 frame.grid()
-descricao =tk.Label(master=frame, text="Laboratório de Informática")
-descricao.place(x=0, y=0)
+descricao =tk.Label(master=frame, text="LABORATÓRIO DE INFORMÁTICA 4")
+descricao.place(x=500, y=10)
 sair = tk.Button(master=frame, text="Fechar", command=window.destroy, bg='red')
-sair.place(x=1150, y=0)
+sair.place(x=1100, y=0)
 
-ladoEsquerdo = tk.Frame(master=frame, width=600, height=600, bg='green')
-ladoEsquerdo.place(x=0,y=40)
-ladoDireito = tk.Frame(master=frame, width=600, height=600, bg='blue')
-ladoDireito.place(x=600,y=40)
-porta = tk.Frame(master=frame, width=20, height=80, bg='brown')
+ladoEsquerdo = tk.Frame(master=frame, width=600, height=600)
+ladoEsquerdo.place(x=60,y=30)
+ladoDireito  = tk.Frame(master=frame, width=600, height=600)
+ladoDireito.place(x=600,y=30)
+porta = tk.Frame(master=frame, width=20, height=80, bg='#521306')
 porta.place(x=0, y=480)
 
 
-#layout dos computadores
+# layout dos computadores
+pc_photo = PhotoImage(file=r"C:/Users/Suporte/Desktop/orglab/images/pc.png")
+photoimage = pc_photo.subsample(10, 10)
 for i in range(8):
     for j in range(5):
-        fileiraesq = tk.Frame(master=ladoEsquerdo,relief=tk.RAISED,borderwidth=1)
+        #ESQUERDA:
+        fileiraesq = tk.Frame(master=ladoEsquerdo, relief=tk.RAISED, borderwidth=1)
         fileiraesq.grid(row=i, column=j, padx=5, pady=5)
-        fileiradir = tk.Frame(master=ladoDireito,relief=tk.RAISED,borderwidth=1)
-        fileiradir.grid(row=i, column=j, padx=5, pady=5)
-        
-        
-        computeresq = tk.Button(master=fileiraesq, text="SP300LAB001",command=infos)
+        computeresq = tk.Button(master=fileiraesq, text="SP300LAB001", command=infos, image=photoimage, compound=TOP, border=0)
         computeresq.pack(padx=5, pady=5)
-        computerdir = tk.Button(master=fileiradir, text="SP300LAB001",command=infos)
+        fileiradir = tk.Frame(master=ladoDireito, relief=tk.RAISED, borderwidth=1)
+        fileiradir.grid(row=i, column=j, padx=5, pady=5)
+        computerdir = tk.Button(master=fileiradir, text="SP300LAB001", command=infos, image=photoimage, compound=TOP, border=0)
         computerdir.pack(padx=5, pady=5)
-        
+
 center(window)
 window.mainloop()
